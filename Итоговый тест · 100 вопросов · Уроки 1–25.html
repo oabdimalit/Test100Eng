@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Итоговый тест · 100 вопросов · Уроки 1–25</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light;
+  --teal:#0D6E63; --teal-d:#093F39; --teal-m:#11564F;
+  --acc:#B5762E; --gold:#E9AF5D;
+  --bg:#F1F7F6; --card:#FFFFFF; --soft:#FAFDFC;
+  --ink:#16241F; --mut:#51655F; --line:#D5E5E2;
+  --ok:#1E7A4A; --ok-bg:#E8F5ED; --bad:#B23B3B; --bad-bg:#FBECEC;
+  --shadow:0 1px 3px rgba(13,110,99,.08),0 6px 18px rgba(13,110,99,.06);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#0B1614; --card:#13211E; --soft:#182825;
+    --ink:#E8F0ED; --mut:#9DB3AD; --line:#273A36;
+    --teal:#4FC0B0; --teal-d:#07100F; --teal-m:#17302B;
+    --acc:#E0A05A; --gold:#E9AF5D;
+    --ok:#5FD197; --ok-bg:#122C20; --bad:#F08A8A; --bad-bg:#2E1718;
+    --shadow:0 1px 3px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0B1614; --card:#13211E; --soft:#182825;
+  --ink:#E8F0ED; --mut:#9DB3AD; --line:#273A36;
+  --teal:#4FC0B0; --teal-d:#07100F; --teal-m:#17302B;
+  --acc:#E0A05A; --ok:#5FD197; --ok-bg:#122C20; --bad:#F08A8A; --bad-bg:#2E1718;
+}
+*{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px); height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:30}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 70px}
+
+/* ── шапка ── */
+.hero{background:var(--teal-d);color:#fff;margin:0 -16px 0;padding:34px 20px 30px;position:relative;overflow:hidden}
+.hero .brand{font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--gold);text-transform:uppercase}
+.hero h1{font-family:"Playfair Display",Georgia,serif;font-size:30px;line-height:1.15;margin:10px 0 6px}
+.hero p{margin:0;color:#A9CFC9;font-size:14.5px}
+.hero .blob{position:absolute;border-radius:50%;background:#0D6E63;opacity:.5}
+.b1{width:200px;height:200px;right:-60px;top:-80px}
+.b2{width:130px;height:130px;right:30px;bottom:-80px;background:#11564F}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;position:relative}
+.chip{background:rgba(255,255,255,.1);border:1px solid rgba(233,175,93,.35);color:#EAF4F2;
+  border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:500}
+
+/* ── липкая панель ── */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--card);
+  border-bottom:1px solid var(--line);margin:0 -16px;padding:9px 16px;display:flex;align-items:center;gap:12px}
+.prog{flex:1;height:7px;background:var(--line);border-radius:999px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .25s}
+.cnt{font-size:13px;font-weight:600;color:var(--mut);white-space:nowrap}
+.tbtn{background:none;border:1px solid var(--line);color:var(--mut);border-radius:8px;
+  padding:5px 9px;font-size:15px;cursor:pointer;line-height:1}
+
+/* ── секции ── */
+.sec{margin:28px 0 8px}
+.sec h2{font-family:"Playfair Display",Georgia,serif;font-size:22px;margin:0 0 4px;color:var(--teal)}
+.sec p{margin:0;color:var(--mut);font-size:13.5px}
+.sec .tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:700;color:var(--acc);margin-bottom:6px}
+
+/* ── карточка вопроса ── */
+.q{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:16px 16px 13px;margin:12px 0;box-shadow:var(--shadow)}
+.q.err{border-color:var(--bad);background:var(--bad-bg)}
+.q.good{border-color:var(--ok)}
+.qh{display:flex;gap:10px;align-items:flex-start;margin-bottom:11px}
+.num{flex:none;width:27px;height:27px;border-radius:50%;background:var(--teal);color:#fff;
+  font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.qt{font-size:16px;font-weight:500;flex:1}
+.qt em{font-style:normal;color:var(--acc);font-weight:600}
+.opts{display:grid;gap:7px}
+.opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1.5px solid var(--line);
+  border-radius:10px;background:var(--soft);cursor:pointer;font-size:15px;transition:.12s;user-select:none}
+.opt:hover{border-color:var(--teal)}
+.opt input{accent-color:var(--teal);width:17px;height:17px;flex:none;margin:0}
+.opt.sel{border-color:var(--teal);background:color-mix(in srgb,var(--teal) 10%,transparent)}
+.opt.right{border-color:var(--ok);background:var(--ok-bg)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+input[type=text]{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;
+  background:var(--soft);color:var(--ink);font:inherit;font-size:15px}
+input[type=text]:focus{outline:none;border-color:var(--teal)}
+.fb{margin-top:10px;font-size:14px;padding:9px 12px;border-radius:9px;display:none}
+.fb.show{display:block}
+.fb.r{background:var(--ok-bg);color:var(--ok)}
+.fb.w{background:var(--bad-bg);color:var(--bad)}
+.fb b{font-weight:700}
+.les{font-size:12px;color:var(--mut);margin-top:7px}
+
+/* ── кнопки ── */
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 10px}
+button.big{flex:1;min-width:190px;border:none;border-radius:12px;padding:15px 20px;
+  font:inherit;font-size:16px;font-weight:700;cursor:pointer}
+.primary{background:var(--teal);color:#fff}
+.primary:hover{filter:brightness(1.08)}
+.ghost{background:var(--card);color:var(--teal);border:1.5px solid var(--teal)!important}
+
+/* ── результат ── */
+.res{display:none;background:var(--teal-d);color:#fff;border-radius:18px;padding:26px 22px;margin:22px 0}
+.res.show{display:block}
+.score{font-family:"Playfair Display",Georgia,serif;font-size:58px;line-height:1;color:var(--gold)}
+.score span{font-size:24px;color:#A9CFC9}
+.band{font-size:19px;font-weight:700;margin:10px 0 4px}
+.bandtxt{color:#A9CFC9;font-size:14.5px;margin:0}
+.bd{margin-top:20px;display:grid;gap:9px}
+.bdr{display:flex;align-items:center;gap:11px;background:#11564F;border-radius:10px;padding:10px 13px}
+.bdr .nm{flex:1;font-size:14px}
+.bdr .vl{font-weight:700;font-size:14.5px;color:var(--gold);white-space:nowrap}
+.bdr .mini{width:76px;height:6px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;flex:none}
+.bdr .mini i{display:block;height:100%;background:var(--gold)}
+.mistakes{margin-top:18px}
+.mistakes h3{font-size:15px;margin:0 0 9px;color:var(--gold)}
+.mi{background:#11564F;border-radius:10px;padding:11px 13px;margin-bottom:8px;font-size:14px}
+.mi .mq{color:#D8E8E5;margin-bottom:5px}
+.mi .ma{color:#F0A6A6}
+.mi .mc{color:#8FE0B8}
+.mi .ml{color:#8FB8B2;font-size:12px;margin-top:4px}
+footer{text-align:center;color:var(--mut);font-size:12.5px;padding:26px 0 10px}
+@media(max-width:560px){
+  .hero h1{font-size:25px}.score{font-size:48px}.qt{font-size:15.5px}.opt{font-size:14.5px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="blob b1"></div><div class="blob b2"></div>
+    <div class="brand">English Practice Hub</div>
+    <h1>Итоговый тест · 100 вопросов</h1>
+    <p>Всё, что мы прошли в уроках 1–25</p>
+    <div class="meta">
+      <span class="chip">6 разделов</span>
+      <span class="chip">Грамматика · Слова · Phrasal verbs</span>
+      <span class="chip">Перевод в обе стороны</span>
+      <span class="chip">Ситуации</span>
+    </div>
+  </div>
+
+  <div class="bar">
+    <div class="prog"><i id="pbar"></i></div>
+    <div class="cnt" id="pcnt">0 / 100</div>
+    <button class="tbtn" id="theme" title="Тема">◐</button>
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="actions">
+    <button class="big primary" id="check">Проверить результат</button>
+    <button class="big ghost" id="reset">Начать заново</button>
+  </div>
+
+  <div class="res" id="res"></div>
+
+  <footer>English Practice Hub · O. Abdimalit · уроки 1–25</footer>
+</div>
+
+<script>
+/* ========== 100 ВОПРОСОВ ========== */
+const DATA = [
+/* ---------- A. ГРАММАТИКА (30) ---------- */
+{s:0,l:1, q:"Where ___ you from?", o:["are","do","is","does"], a:0},
+{s:0,l:1, q:"She ___ in a bank every day.", o:["work","works","is work","working"], a:1},
+{s:0,l:1, q:"I ___ strong coffee.", o:["am not like","don't like","doesn't like","not like"], a:1},
+{s:0,l:1, q:"Where ___ she work before?", o:["did","does","was","do"], a:0},
+{s:0,l:3, q:"Listen! The baby ___.", o:["cries","cry","is crying","was cry"], a:2},
+{s:0,l:3, q:"I usually work in the office, but this week I ___ from home.", o:["work","am working","worked","will work"], a:1},
+{s:0,l:3, q:"She ___ the answer.", o:["isn't knowing","don't know","doesn't know","not knows"], a:2},
+{s:0,l:5, q:"___ you go to Osh last year?", o:["Did","Do","Were","Have"], a:0},
+{s:0,l:5, q:"I ___ to Turkey last summer.", o:["go","went","have gone","was go"], a:1},
+{s:0,l:5, q:"She ___ the hotel.", o:["didn't liked","not liked","didn't like","doesn't liked"], a:2},
+{s:0,l:4, q:"___ two cafés in this terminal.", o:["There is","There are","It is","There have"], a:1},
+{s:0,l:4, q:"Put your bag ___ the belt.", o:["in","at","on","to"], a:2},
+{s:0,l:17,q:"___ I borrow your charger?", o:["Could","Must","Should I to","Am"], a:0},
+{s:0,l:8, q:"This hotel is ___ than that one.", o:["cheap","more cheap","cheaper","cheapest"], a:2},
+{s:0,l:8, q:"It's the ___ café in the city.", o:["good","better","best","most good"], a:2},
+{s:0,l:21,q:"You ___ take photos here. It's forbidden.", o:["don't have to","mustn't","shouldn't to","needn't"], a:1},
+{s:0,l:21,q:"You ___ tip here — it's not the custom.", o:["mustn't","can't","don't have to","aren't"], a:2},
+{s:0,l:18,q:"You ___ drink more water.", o:["should","must to","are should","shoulds"], a:0},
+{s:0,l:19,q:"If it ___ tomorrow, we will stay at home.", o:["will rain","rains","rain","is raining"], a:1},
+{s:0,l:19,q:"Look at those black clouds! It ___ rain.", o:["will","is going to","goes to","shall"], a:1},
+{s:0,l:10,q:"I ___ call you when I ___.", o:["will / arrive","will / will arrive","am / arrive","will / arrived"], a:0},
+{s:0,l:10,q:"Will you come tomorrow? — Yes, ___.", o:["I come","I will","I do","I am"], a:1},
+{s:0,l:18,q:"I ___ when the phone rang.", o:["worked","was working","am working","work"], a:1},
+{s:0,l:19,q:"While she ___ for the bus, it started to rain.", o:["waited","waits","was waiting","has waited"], a:2},
+{s:0,l:24,q:"Have you ever ___ abroad?", o:["work","worked","working","works"], a:1},
+{s:0,l:24,q:"I have ___ sent the email, and I haven't got an answer ___.", o:["yet / already","already / yet","still / yet","yet / still"], a:1},
+{s:0,l:11,q:"I've known him ___ 2019 and I've worked here ___ two years.", o:["for / since","since / for","from / for","since / from"], a:1},
+{s:0,l:9, q:"Could you tell me where the station ___?", o:["is","it is","does it be","are"], a:0},
+{s:0,l:22,q:"She works very ___ and she speaks English ___.", o:["careful / good","carefully / well","careful / well","carefully / good"], a:1},
+{s:0,l:23,q:"The printer broke, ___ we can't print the documents.", o:["because","so","but","although"], a:1},
+
+/* ---------- B. СЛОВА (20) ---------- */
+{s:1,l:4, q:"Документ, который тебе дают после регистрации на рейс:", o:["receipt","boarding pass","timetable","voucher"], a:1},
+{s:1,l:19,q:"The flight is two hours late. There is a two-hour ___.", o:["delay","queue","detour","refund"], a:0},
+{s:1,l:8, q:"Бумага, которая подтверждает, что ты заплатил:", o:["invoice","contract","receipt","prescription"], a:2},
+{s:1,l:10,q:"The ___ is Friday — we must finish before that.", o:["schedule","deadline","appointment","notice"], a:1},
+{s:1,l:22,q:"Надёжный человек — это:", o:["talkative","reliable","shy","strict"], a:1},
+{s:1,l:24,q:"Испытательный срок по-английски:", o:["notice period","probation","training","contract"], a:1},
+{s:1,l:20,q:"Курс обмена валют:", o:["exchange rate","fee","balance","commission"], a:0},
+{s:1,l:21,q:"Обычай, традиция:", o:["habit","custom","rule","manner"], a:1},
+{s:1,l:16,q:"Please see the ___ — I sent you the price list.", o:["signature","attachment","subject","reply"], a:1},
+{s:1,l:15,q:"He isn't available, so I left a message on his ___.", o:["extension","voicemail","signal","line"], a:1},
+{s:1,l:17,q:"Комната, где проходят встречи:", o:["reception","meeting room","office hall","drawer"], a:1},
+{s:1,l:18,q:"You need a ___ from a doctor to buy this medicine.", o:["receipt","insurance","prescription","appointment"], a:2},
+{s:1,l:2, q:"Сверхурочная работа:", o:["shift","overtime","break","day off"], a:1},
+{s:1,l:2, q:"Выходной день:", o:["weekend","day off","holiday","free time"], a:1},
+{s:1,l:6, q:"Жаловаться:", o:["apologise","complain","confirm","explain"], a:1},
+{s:1,l:23,q:"Решение проблемы:", o:["problem","solution","reason","mistake"], a:1},
+{s:1,l:18,q:"Страховка:", o:["insurance","ambulance","emergency","prescription"], a:0},
+{s:1,l:4, q:"There is a long ___ at passport control. We must wait.", o:["line up","queue","crowd","row"], a:1},
+{s:1,l:14,q:"I was very ___ on my first day — I said nothing for two hours.", o:["polite","shy","friendly","busy"], a:1},
+{s:1,l:20,q:"Снять деньги в банкомате:", o:["transfer","withdraw","exchange","sign"], a:1},
+
+/* ---------- C. PHRASAL VERBS (15) ---------- */
+{s:2,l:14,q:"I ___ well with all my colleagues.", o:["get along","get up","get in","get over"], a:0},
+{s:2,l:15,q:"He is busy now. I'll ___ in ten minutes.", o:["call off","call back","call up","call in"], a:1},
+{s:2,l:17,q:"We've ___ paper again — the printer is empty.", o:["run out of","run off","gone out of","taken out of"], a:0},
+{s:2,l:18,q:"Can you ___ my cat while I'm away?", o:["look for","look after","look up","look at"], a:1},
+{s:2,l:25,q:"Never ___ after two months. Keep going.", o:["give away","give up","give back","give in"], a:1},
+{s:2,l:16,q:"I need to ___ what time the train leaves.", o:["find out","look after","take off","put off"], a:0},
+{s:2,l:21,q:"Please ___ your shoes before you come in.", o:["put on","take off","get off","turn off"], a:1},
+{s:2,l:19,q:"My friend will ___ me ___ at the airport.", o:["pick / up","drop / off","take / off","set / off"], a:0},
+{s:2,l:19,q:"We ___ at the hotel at three o'clock.", o:["checked in","checked out","got in","signed in"], a:0},
+{s:2,l:19,q:"We ___ early in the morning for a long drive.", o:["set up","set off","took up","got off"], a:1},
+{s:2,l:23,q:"Don't ___ bad news — tell the manager today.", o:["put off","put on","take off","give off"], a:0},
+{s:2,l:23,q:"We need to ___ this situation before Friday.", o:["sort out","sort off","work on","deal of"], a:0},
+{s:2,l:25,q:"I'm ___ my holiday next month.", o:["looking after","looking for","looking forward to","looking up"], a:2},
+{s:2,l:25,q:"She ___ a great idea at the meeting.", o:["came up with","came back","came out","came along"], a:0},
+{s:2,l:9, q:"___ the bus at the third stop, near the bridge.", o:["Get off","Get out","Get in","Get away"], a:0},
+
+/* ---------- D. EN → RU (10) ---------- */
+{s:3,l:15,q:"«I'm afraid he isn't available at the moment.»", o:["Боюсь, он сейчас недоступен.","Боюсь, он не хочет говорить.","Боюсь, он не работает здесь.","Боюсь, он занят навсегда."], a:0},
+{s:3,l:19,q:"«It will take about twenty minutes on foot.»", o:["Это стоит примерно двадцать минут.","Это займёт около двадцати минут пешком.","Идти двадцать минут на автобусе.","Через двадцать минут мы выходим."], a:1},
+{s:3,l:6, q:"«Could you give me another room, please?»", o:["Вы дадите мне другую комнату?","Можно мне другую комнату, пожалуйста?","Я хочу другую комнату сейчас же.","Где другая комната?"], a:1},
+{s:3,l:24,q:"«My notice period is one month.»", o:["Мой испытательный срок — месяц.","Моё уведомление пришло месяц назад.","Я должен отработать месяц перед уходом.","У меня отпуск один месяц."], a:2},
+{s:3,l:23,q:"«I take responsibility for this.»", o:["Я беру на себя ответственность за это.","Я отвечу на это позже.","Это не моя ответственность.","Я отвечаю за них."], a:0},
+{s:3,l:22,q:"«He is strict but fair.»", o:["Он строгий и несправедливый.","Он строгий, но справедливый.","Он честный, но мягкий.","Он справедливый, но слабый."], a:1},
+{s:3,l:21,q:"«You don't have to bring a present, but it's nice.»", o:["Ты не должен приносить подарок — это запрещено.","Приносить подарок обязательно.","Подарок приносить необязательно, но это приятно.","Подарки здесь не любят."], a:2},
+{s:3,l:11,q:"«I've worked in customer service for four years.»", o:["Я работал в сервисе четыре года назад.","Я работаю в клиентском сервисе уже четыре года.","Я буду работать в сервисе четыре года.","Я работал в сервисе четыре раза."], a:1},
+{s:3,l:20,q:"«Is there a fee for this operation?»", o:["Есть ли комиссия за эту операцию?","Сколько стоит эта операция?","Можно оплатить эту операцию?","Эта операция бесплатная?"], a:0},
+{s:3,l:13,q:"«It's a thing you use for writing.»", o:["Это вещь, которой ты пишешь.","Это то, что ты пишешь.","Эту вещь написали для тебя.","Ты используешь письмо для вещи."], a:0},
+
+/* ---------- E. RU → EN, ввод текста (10) ---------- */
+{s:4,l:1, t:"text", q:"Где ты работаешь?", ac:["where do you work","where do you work?"], sh:"Where do you work?"},
+{s:4,l:4, t:"text", q:"Можно мне место у окна, пожалуйста?", ac:["can i have a window seat please","can i have a window seat, please?","could i have a window seat please","could i have a window seat, please?","can i have a window seat?","can i have a window seat"], sh:"Can I have a window seat, please?"},
+{s:4,l:15,t:"text", q:"Не могли бы вы повторить, пожалуйста?", ac:["could you repeat that please","could you repeat that, please?","could you repeat please","could you repeat that?","can you repeat that please"], sh:"Could you repeat that, please?"},
+{s:4,l:18,t:"text", q:"У меня болит голова.", ac:["i have a headache","i have a headache.","i've got a headache","my head hurts"], sh:"I have a headache."},
+{s:4,l:19,t:"text", q:"Мой рейс задержан.", ac:["my flight is delayed","my flight is delayed."], sh:"My flight is delayed."},
+{s:4,l:10,t:"text", q:"Я не опоздаю.", ac:["i won't be late","i will not be late","i won't be late.","i wont be late"], sh:"I won't be late."},
+{s:4,l:20,t:"text", q:"Сколько это стоит?", ac:["how much is it","how much is it?","how much does it cost","how much does it cost?"], sh:"How much is it?"},
+{s:4,l:24,t:"text", q:"Когда я могу начать?", ac:["when can i start","when can i start?","when can i begin"], sh:"When can I start?"},
+{s:4,l:23,t:"text", q:"У нас небольшая проблема.", ac:["we have a small problem","we have a small problem.","we have a little problem"], sh:"We have a small problem."},
+{s:4,l:25,t:"text", q:"Я не сдамся.", ac:["i won't give up","i will not give up","i won't give up.","i wont give up"], sh:"I won't give up."},
+
+/* ---------- F. СИТУАЦИИ (15) ---------- */
+{s:5,l:4, q:"На стойке регистрации у тебя спрашивают: «Do you have any luggage to check in?» Что это значит?", o:["Есть ли у вас багаж для сдачи?","У вас есть ручная кладь?","Вы проверили свой багаж?","Вы потеряли багаж?"], a:0},
+{s:5,l:15,q:"Ты звонишь, и человека нет на месте. Что ты скажешь?", o:["Who are you?","Can I take a message?","Can I leave a message?","Call him now."], a:2},
+{s:5,l:15,q:"Ты принимаешь звонок, а нужного человека нет. Что скажешь ты?", o:["Can I leave a message?","Can I take a message?","I don't know him.","He is not here, bye."], a:1},
+{s:5,l:6, q:"В отеле не работает душ. Самая вежливая фраза:", o:["The shower is broken! Fix it!","Excuse me, there's a problem with the shower — it isn't working.","Your hotel is very bad.","Why is the shower broken?"], a:1},
+{s:5,l:7, q:"У тебя аллергия на орехи. Что ты скажешь официанту?", o:["I don't like nuts.","I'm allergic to nuts. Are there any nuts in this dish?","No nuts for me today.","Nuts are bad for me, maybe."], a:1},
+{s:5,l:8, q:"Куртка сломалась, чек есть, ты хочешь деньги назад. Что скажешь?", o:["I'd like a refund, please. Here is the receipt.","I want to change this jacket now.","Your jacket is very bad quality.","Can I try on another jacket?"], a:0},
+{s:5,l:9, q:"Ты не понял объяснение дороги. Лучшая реакция:", o:["OK, thank you. (и пойти наугад)","Sorry, could you show me on the map?","Speak English, please.","I don't understand. Bye."], a:1},
+{s:5,l:18,q:"В аптеке тебе говорят: «One tablet twice a day after meals.» Сколько таблеток в день?", o:["Одну","Две","Три","Четыре"], a:1},
+{s:5,l:19,q:"Рейс отменили из-за погоды. Какая фраза работает лучше всего?", o:["This is your fault!","I understand it's not your fault. I have two children with me. Can you help us?","Give me a hotel now.","Why is your airline so bad?"], a:1},
+{s:5,l:16,q:"Ты пишешь клиенту письмо. Что поставить первым?", o:["Рассказ о погоде","Тему письма из 3–5 слов","Извинения за беспокойство","Свою подпись"], a:1},
+{s:5,l:23,q:"Отчёт будет готов на два дня позже. С чего начать разговор с руководителем?", o:["С оправданий, почему это не твоя вина","С факта: отчёт будет готов в среду, а не в понедельник","С вопроса, можно ли вообще не делать отчёт","С рассказа о том, как много ты работал"], a:1},
+{s:5,l:24,q:"Тебе сделали оффер. На вопрос «Do you have any questions?» правильнее всего:", o:["No, everything is clear.","Yes — could you tell me about the working hours and the probation period?","No questions, thank you.","Only about the salary."], a:1},
+{s:5,l:12,q:"На собеседовании спрашивают, почему ты ушёл с прошлой работы. Сильный ответ:", o:["My manager was difficult to work with.","The salary was too low.","I'd reached the limit of what I could do there, and I'm looking for more responsibility.","The company had a lot of problems."], a:2},
+{s:5,l:13,q:"Ты не знаешь английское слово посреди разговора. Что делать?", o:["Замолчать и ждать","Перейти на русский","Описать словами: It's a thing you use for…","Сказать «I don't know» и закончить"], a:2},
+{s:5,l:26,q:"Что такое беглость речи по мнению твоего курса?", o:["Говорить без единой ошибки","Умение не останавливаться и продолжать через трудности","Знать все времена наизусть","Говорить очень быстро"], a:1}
+];
+
+const SECS = [
+  {t:"Раздел A · Грамматика", d:"Времена, модальные глаголы, вопросы, сравнения. Уроки 1–25.", n:"Grammar"},
+  {t:"Раздел B · Слова", d:"Лексика всех тем: работа, аэропорт, отель, деньги, здоровье.", n:"Vocabulary"},
+  {t:"Раздел C · Phrasal verbs", d:"Фразовые глаголы из мини-книги и уроков.", n:"Phrasal verbs"},
+  {t:"Раздел D · С английского на русский", d:"Выбери точный перевод фразы.", n:"EN → RU"},
+  {t:"Раздел E · С русского на английский", d:"Напиши фразу по-английски. Регистр и точка не важны.", n:"RU → EN"},
+  {t:"Раздел F · Реальные ситуации", d:"Что ты скажешь и что это значит. Самая полезная часть.", n:"Ситуации"}
+];
+
+/* ========== РЕНДЕР ========== */
+const KEY = "eph_test100_v1";
+const quiz = document.getElementById("quiz");
+let answers = {};
+try { answers = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ answers = {}; }
+
+let html = "", lastSec = -1;
+DATA.forEach((d, i) => {
+  if (d.s !== lastSec) {
+    lastSec = d.s;
+    html += `<div class="sec"><div class="tag">${SECS[d.s].n}</div><h2>${SECS[d.s].t}</h2><p>${SECS[d.s].d}</p></div>`;
+  }
+  html += `<div class="q" id="q${i}"><div class="qh"><div class="num">${i+1}</div><div class="qt">${d.q}</div></div>`;
+  if (d.t === "text") {
+    const v = answers[i] ? String(answers[i]).replace(/"/g,"&quot;") : "";
+    html += `<input type="text" id="i${i}" data-i="${i}" placeholder="Напиши по-английски…" value="${v}" autocomplete="off" autocapitalize="off" spellcheck="false">`;
+  } else {
+    html += `<div class="opts">`;
+    d.o.forEach((o, k) => {
+      const sel = answers[i] === k ? " sel" : "";
+      const ck = answers[i] === k ? " checked" : "";
+      html += `<label class="opt${sel}" id="o${i}_${k}"><input type="radio" name="q${i}" value="${k}" data-i="${i}"${ck}>${o}</label>`;
+    });
+    html += `</div>`;
+  }
+  html += `<div class="fb" id="f${i}"></div><div class="les" id="l${i}" style="display:none">Урок ${d.l}</div></div>`;
+});
+quiz.innerHTML = html;
+
+/* ========== ЛОГИКА ========== */
+const norm = s => String(s||"").toLowerCase().trim()
+  .replace(/[.,!?;:"']/g,"").replace(/\s+/g," ").replace(/’/g,"'");
+
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(answers)); }catch(e){} }
+
+function progress(){
+  const n = DATA.filter((d,i) => d.t==="text" ? (answers[i]||"").trim() !== "" : answers[i] !== undefined).length;
+  document.getElementById("pbar").style.width = n + "%";
+  document.getElementById("pcnt").textContent = n + " / 100";
+}
+
+quiz.addEventListener("change", e => {
+  const t = e.target;
+  if (t.type === "radio") {
+    const i = +t.dataset.i;
+    answers[i] = +t.value;
+    DATA[i].o.forEach((_,k)=>document.getElementById(`o${i}_${k}`).classList.toggle("sel", k === +t.value));
+    save(); progress();
+  }
+});
+quiz.addEventListener("input", e => {
+  if (e.target.type === "text") { answers[+e.target.dataset.i] = e.target.value; save(); progress(); }
+});
+
+function check(){
+  let right = 0;
+  const bySec = SECS.map(()=>({r:0,t:0}));
+  const wrong = [];
+  DATA.forEach((d,i) => {
+    bySec[d.s].t++;
+    const card = document.getElementById(`q${i}`);
+    const fb = document.getElementById(`f${i}`);
+    const les = document.getElementById(`l${i}`);
+    let ok = false, given = "—", correct = "";
+    if (d.t === "text") {
+      const v = answers[i] || "";
+      given = v.trim() || "—";
+      correct = d.sh;
+      ok = d.ac.some(a => norm(a) === norm(v));
+      document.getElementById(`i${i}`).style.borderColor = ok ? "var(--ok)" : "var(--bad)";
+    } else {
+      correct = d.o[d.a];
+      if (answers[i] !== undefined) given = d.o[answers[i]];
+      ok = answers[i] === d.a;
+      d.o.forEach((_,k) => {
+        const el = document.getElementById(`o${i}_${k}`);
+        el.classList.remove("right","wrong");
+        if (k === d.a) el.classList.add("right");
+        else if (answers[i] === k) el.classList.add("wrong");
+      });
+    }
+    card.classList.remove("err","good");
+    card.classList.add(ok ? "good" : "err");
+    fb.className = "fb show " + (ok ? "r" : "w");
+    fb.innerHTML = ok ? "✓ Верно" : `✗ Неверно. Правильно: <b>${correct}</b>`;
+    les.style.display = "block";
+    if (ok) { right++; bySec[d.s].r++; }
+    else wrong.push({n:i+1, q:d.q, given, correct, l:d.l, s:d.s});
+  });
+
+  const bands = [
+    [90,"Отлично","Уверенный A2+. Материал курса усвоен, можно идти дальше."],
+    [75,"Хорошо","Крепкий A2. Разберите ошибки — и уровень закроется полностью."],
+    [60,"Нормально","База есть, но половина тем требует повторения. Смотри раздел с ошибками."],
+    [40,"Слабовато","Нужно вернуться к урокам, которые чаще всего встречаются в ошибках."],
+    [0, "Начнём сначала","Пройди уроки заново по списку ниже — по одному в день."]
+  ];
+  const band = bands.find(b => right >= b[0]);
+
+  let r = `<div class="score">${right}<span> / 100</span></div>
+    <div class="band">${band[1]}</div><p class="bandtxt">${band[2]}</p><div class="bd">`;
+  bySec.forEach((b,i) => {
+    const pct = Math.round(b.r / b.t * 100);
+    r += `<div class="bdr"><div class="nm">${SECS[i].n}</div>
+      <div class="mini"><i style="width:${pct}%"></i></div>
+      <div class="vl">${b.r} / ${b.t}</div></div>`;
+  });
+  r += `</div>`;
+
+  if (wrong.length) {
+    const byLes = {};
+    wrong.forEach(w => byLes[w.l] = (byLes[w.l]||0)+1);
+    const top = Object.entries(byLes).sort((a,b)=>b[1]-a[1]).slice(0,4)
+      .map(([l,c]) => `урок ${l} (${c})`).join(" · ");
+    r += `<div class="mistakes"><h3>Ошибки — ${wrong.length} шт.</h3>`;
+    if (top) r += `<div class="mi"><div class="mq">Чаще всего ошибки в темах: <b>${top}</b>. С них и начни повторение.</div></div>`;
+    wrong.forEach(w => {
+      r += `<div class="mi">
+        <div class="mq">${w.n}. ${w.q}</div>
+        <div class="ma">Твой ответ: ${w.given}</div>
+        <div class="mc">Правильно: ${w.correct}</div>
+        <div class="ml">${SECS[w.s].n} · урок ${w.l}</div></div>`;
+    });
+    r += `</div>`;
+  } else {
+    r += `<div class="mistakes"><h3>Ошибок нет</h3><div class="mi">100 из 100. Такое бывает редко — покажи этот экран преподавателю.</div></div>`;
+  }
+
+  const res = document.getElementById("res");
+  res.innerHTML = r;
+  res.classList.add("show");
+  res.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+document.getElementById("check").addEventListener("click", check);
+document.getElementById("reset").addEventListener("click", () => {
+  if (!confirm("Очистить все ответы и начать заново?")) return;
+  answers = {}; save();
+  location.reload();
+});
+
+/* тема */
+const tb = document.getElementById("theme");
+tb.addEventListener("click", () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const next = cur === "dark" ? "light" : (cur === "light" ? "dark" : "dark");
+  document.documentElement.setAttribute("data-theme", next);
+  try { localStorage.setItem("eph_theme", next); } catch(e){}
+});
+try { const th = localStorage.getItem("eph_theme"); if (th) document.documentElement.setAttribute("data-theme", th); } catch(e){}
+
+progress();
+</script>
+</body>
+</html>
